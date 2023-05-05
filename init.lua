@@ -74,8 +74,7 @@ require('lazy').setup({
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
-  {
-    -- LSP Configuration & Plugins
+  { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
@@ -91,16 +90,14 @@ require('lazy').setup({
     },
   },
 
-  {
-    -- Autocompletion
+  { -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',          opts = {} },
-  {
-    -- Adds git releated signs to the gutter, as well as utilities for managing changes
+  { 'folke/which-key.nvim', opts = {} },
+  { -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
       -- See `:help gitsigns.txt`
@@ -213,7 +210,7 @@ vim.o.mouse = 'a'
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
+-- vim.o.clipboard = 'unnamedplus'
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -287,11 +284,12 @@ vim.keymap.set('n', '<leader>/', function()
   })
 end, { desc = '[/] Fuzzily search in current buffer' })
 
-vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[F]earch [F]iles' })
-vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[F]earch [H]elp' })
-vim.keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = '[F]earch current [W]ord' })
-vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = '[F]earch by [G]rep' })
-vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = '[F]earch [D]iagnostics' })
+vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
+-- vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+-- vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
+-- vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
+-- vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
+-- vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -446,6 +444,9 @@ mason_lspconfig.setup {
 
 mason_lspconfig.setup_handlers {
   function(server_name)
+    if(server_name == 'jdtls') then
+      return
+    end
     require('lspconfig')[server_name].setup {
       capabilities = capabilities,
       on_attach = on_attach,
