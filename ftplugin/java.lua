@@ -49,11 +49,11 @@ end
 local jdtls = require 'jdtls'
 
 -- jdtls recommendations https://github.com/mfussenegger/nvim-jdtls#usage
-map('n', '<A-o>', jdtls.organize_imports, { desc = 'Organize Imports' })
-map('v', 'crv', function() jdtls.extract_variable(true) end, { desc = 'Extract Variable' })
-map('n', 'crc', jdtls.extract_constant, { desc = 'Extract Constant' })
-map('v', 'crc', function() jdtls.extract_constant(true) end, { desc = 'Extract Constant True' })
-map('v', 'crm', function() jdtls.extract_method(true) end, { desc = 'Extract Method' })
+map('n', '<A-o>', jdtls.organize_imports, 'Organize Imports')
+map('v', 'crv', function() jdtls.extract_variable(true) end, 'Extract Variable')
+map('n', 'crc', jdtls.extract_constant, 'Extract Constant')
+map('v', 'crc', function() jdtls.extract_constant(true) end, 'Extract Constant True')
+map('v', 'crm', function() jdtls.extract_method(true) end, 'Extract Method')
 
 -- copy from kickstart nvim because Mason doesn't control jdtls
 map('n', '<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
