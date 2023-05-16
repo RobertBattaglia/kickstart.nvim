@@ -2,4 +2,17 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
-return {}
+return {
+	'mfussenegger/nvim-jdtls',
+	{
+		'navarasu/onedark.nvim',
+		priority = 1000,
+		config = function()
+			require('onedark').setup({
+				style = 'deep'
+			})
+			require('onedark').load()
+			vim.cmd.colorscheme 'onedark'
+		end,
+	},
+}
