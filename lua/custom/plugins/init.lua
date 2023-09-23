@@ -15,4 +15,21 @@ return {
 			vim.cmd.colorscheme 'onedark'
 		end,
 	},
+	{
+		"jackMort/ChatGPT.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("chatgpt").setup({
+				api_key_cmd = "get-openai-api-key",
+				keymaps = {
+					select_session = "<leader>s",
+				},
+			})
+		end,
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim"
+		}
+	}
 }
