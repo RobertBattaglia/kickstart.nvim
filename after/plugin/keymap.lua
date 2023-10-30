@@ -17,3 +17,7 @@ vim.keymap.set('n', '<leader>rs', '<cmd>silent !rs l<CR>', { desc = 'rsync wrapp
 -- Quick Fix List
 vim.keymap.set('n', '<leader>cn', '<cmd>cnext<CR>zz', { desc = 'cnext' })
 vim.keymap.set('n', '<leader>cp', '<cmd>cprev<CR>zz', { desc = 'cprev' })
+
+-- Location List
+vim.keymap.set('n', '<leader>ln', '<cmd>lnext<CR>zz', { desc = 'lnext' })
+vim.keymap.set('n', '<leader>lp', '<cmd>lprev<CR>zz', { desc = 'lprev' })
