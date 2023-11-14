@@ -1,5 +1,5 @@
 -- For work
-local java8RuntimePath = os.getenv('JAVA_HOME')
+local javaRuntimePath = os.getenv('JAVA_HOME')
 local wrapperPath = os.getenv('HOME') .. '/dotfiles/nvim/.config/nvim/ftplugin/jdtls-wrapper'
 
 local config = {
@@ -11,8 +11,7 @@ local config = {
 			configuration = {
 				runtimes = {
 					{
-						name = 'JavaSE-1.8',
-						path = java8RuntimePath,
+						path = javaRuntimePath,
 						default = true
 					}
 				}
@@ -30,7 +29,7 @@ local config = {
 					enabled = true,
 					home = os.getenv('HOME') .. '/.gradle/',
 					java = {
-						home = java8RuntimePath
+						home = javaRuntimePath
 					}
 				}
 			}
