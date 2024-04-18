@@ -24,3 +24,8 @@ vim.keymap.set('n', '<leader>lp', '<cmd>lprev<CR>zz', { desc = 'lprev' })
 
 -- Fugitive Keymaps
 vim.keymap.set('n', '<leader>gh', '<cmd>0Gclog<CR>', { desc = '[G]it [H]istory of current file in quickfix list' })
+
+-- Sourcegraph
+vim.keymap.set('n', '<leader>ss', '<cmd>SourcegraphSearch<CR>', { desc = '[S]ourcegraph [S]earch' })
+vim.keymap.set('n', '<leader>sl', '<cmd>SourcegraphLink<CR>', { desc = '[S]ourcegraph [L]ink' })
+
