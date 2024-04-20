@@ -2,12 +2,6 @@
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 
--- Window Navigation
-vim.keymap.set('n', '<leader>h', '<cmd>wincmd h<CR>')
-vim.keymap.set('n', '<leader>j', '<cmd>wincmd j<CR>')
-vim.keymap.set('n', '<leader>k', '<cmd>wincmd k<CR>')
-vim.keymap.set('n', '<leader>l', '<cmd>wincmd l<CR>')
-
 -- Last Buffer
 vim.keymap.set('n', '<leader><Tab>', '<cmd>b#<CR>', { desc = 'last buffer' })
 
@@ -22,6 +16,10 @@ vim.keymap.set('n', '<leader>cp', '<cmd>cprev<CR>zz', { desc = 'cprev' })
 vim.keymap.set('n', '<leader>ln', '<cmd>lnext<CR>zz', { desc = 'lnext' })
 vim.keymap.set('n', '<leader>lp', '<cmd>lprev<CR>zz', { desc = 'lprev' })
 
+-- diagnostics
+vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next, { desc = '[D]iagnostics [N]ext' })
+vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev, { desc = '[D]iagnostics [P]rev' })
+
 -- Fugitive Keymaps
 vim.keymap.set('n', '<leader>gh', '<cmd>0Gclog<CR>', { desc = '[G]it [H]istory of current file in quickfix list' })
 
@@ -29,3 +27,5 @@ vim.keymap.set('n', '<leader>gh', '<cmd>0Gclog<CR>', { desc = '[G]it [H]istory o
 vim.keymap.set('n', '<leader>ss', '<cmd>SourcegraphSearch<CR>', { desc = '[S]ourcegraph [S]earch' })
 vim.keymap.set('n', '<leader>sl', '<cmd>SourcegraphLink<CR>', { desc = '[S]ourcegraph [L]ink' })
 
+-- Neotree
+vim.keymap.set('n', '<leader>,', '<cmd>Neotree toggle reveal<CR>', { desc = 'Neotree toggle reveal' })

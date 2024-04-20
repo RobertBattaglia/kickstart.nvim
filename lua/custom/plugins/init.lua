@@ -4,6 +4,7 @@
 -- See the kickstart.nvim README for more information
 return {
 	'mfussenegger/nvim-jdtls',
+	'tpope/vim-fugitive',
 	{
 		'navarasu/onedark.nvim',
 		priority = 1000,
