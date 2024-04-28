@@ -21,7 +21,8 @@ vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next, { desc = '[D]iagnost
 vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev, { desc = '[D]iagnostics [P]rev' })
 
 -- Fugitive Keymaps
-vim.keymap.set('n', '<leader>gh', '<cmd>0Gclog<CR>', { desc = '[G]it [H]istory of current file in quickfix list' })
+vim.keymap.set('n', '<leader>gh', '<cmd>0Gclog!<CR>', { desc = '[G]it [H]istory of current file in quickfix list' })
+vim.keymap.set('n', '<leader>gl', '<cmd>GitCommitHistoryOneline<CR>', { desc = '[G]it History of current [L] in quickfix list' })
 
 -- Sourcegraph
 vim.keymap.set('n', '<leader>ss', '<cmd>SourcegraphSearch<CR>', { desc = '[S]ourcegraph [S]earch' })
