@@ -69,5 +69,24 @@ return {
 		  -- or leave it empty to use the default settings
 		  -- refer to the configuration section below
 		 },
-	}
+	},
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function ()
+			require("copilot").setup({
+				suggestion = { enabled = false },
+				panel = { enabled = false },
+			})
+		end
+
+	},
+	{
+		"zbirenbaum/copilot-cmp",
+		config = function ()
+			require("copilot_cmp").setup()
+		end
+	},
+	"onsails/lspkind.nvim"
 }

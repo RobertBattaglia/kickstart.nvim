@@ -714,6 +714,7 @@ require('lazy').setup({
       -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
+      local lspkind = require 'lspkind'
       luasnip.config.setup {}
 
       cmp.setup {
@@ -777,11 +778,19 @@ require('lazy').setup({
           --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
         },
         sources = {
-          { name = 'nvim_lsp' },
+          { name = 'nvim_lsp', priority = 3 },
           { name = 'luasnip' },
           { name = 'path' },
-          { name = 'cody' },
+          { name = 'cody', priority = 1 },
+          { name = 'copilot', priority = 2 }
         },
+---@diagnostic disable-next-line: missing-fields
+        formatting = {
+          format = lspkind.cmp_format({
+            mode = "symbol",
+            symbol_map = { Copilot = "", Cody = "󰧑" }
+          })
+        }
       }
     end,
   },
