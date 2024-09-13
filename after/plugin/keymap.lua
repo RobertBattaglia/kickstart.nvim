@@ -6,7 +6,7 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', '<leader><Tab>', '<cmd>b#<CR>', { desc = 'last buffer' })
 
 -- rsync Wrapper Script
-vim.keymap.set('n', '<leader>rs', '<cmd>silent !rs l<CR>', { desc = 'rsync wrapper' })
+vim.keymap.set('n', '<leader>rsc', '<cmd>silent !rsc l<CR>', { desc = 'rsync wrapper' })
 
 -- Quick Fix List
 vim.keymap.set('n', '<leader>cn', '<cmd>cnext<CR>zz', { desc = 'cnext' })
@@ -19,6 +19,8 @@ vim.keymap.set('n', '<leader>lp', '<cmd>lprev<CR>zz', { desc = 'lprev' })
 -- diagnostics
 vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next, { desc = '[D]iagnostics [N]ext' })
 vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev, { desc = '[D]iagnostics [P]rev' })
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = 'Diagnostics [E]xplore' })
+
 
 -- Fugitive Keymaps
 vim.keymap.set('n', '<leader>gh', '<cmd>0Gclog!<CR>', { desc = '[G]it [H]istory of current file in quickfix list' })
