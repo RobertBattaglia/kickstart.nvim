@@ -24,12 +24,12 @@ vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = 'Diagnostic
 
 -- Fugitive Keymaps
 vim.keymap.set('n', '<leader>gh', '<cmd>0Gclog!<CR>', { desc = '[G]it [H]istory of current file in quickfix list' })
-vim.keymap.set('n', '<leader>gl', '<cmd>GitCommitHistoryOneline<CR>', { desc = '[G]it History of current [L] in quickfix list' })
+vim.keymap.set('n', '<leader>gl', '<cmd>GitCommitHistoryOneline<CR>', { desc = '[G]it History of current [L]ine in quickfix list' })
 
 -- Sourcegraph
 vim.keymap.set('n', '<leader>ss', '<cmd>SourcegraphSearch<CR>', { desc = '[S]ourcegraph [S]earch' })
 vim.keymap.set('n', '<leader>sl', '<cmd>SourcegraphLink<CR>', { desc = '[S]ourcegraph [L]ink' })
-vim.keymap.set('n', '<leader>cc', '<cmd>CodyChat<CR>', { desc = '[C]ody [C]hat' })
+vim.keymap.set('n', '<leader>cc', '<cmd>CopilotChatToggle<CR>', { desc = '[C]opilot [C]hat' })
 vim.keymap.set('v', '<leader>ca', ':CodyAsk ', { desc = '[C]ody [A]sk' })
 
 -- Neotree
