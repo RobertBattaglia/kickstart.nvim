@@ -38,18 +38,12 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       require('sg').setup {
+        enable_cody  = false, -- 😭
         chat = {
           default_model = 'anthropic/claude-3-5-sonnet',
         },
       }
     end,
-  },
-  {
-    'David-Kunz/gen.nvim',
-    opts = {
-      model = 'deepseek-coder-v2', -- The default model to use.
-      show_model = true, -- Displays which model you are using at the beginning of your chat session.
-    },
   },
   {
     'windwp/nvim-autopairs',
@@ -95,6 +89,25 @@ return {
       require('copilot_cmp').setup()
     end,
   },
+  {
+    'CopilotC-Nvim/CopilotChat.nvim',
+    dependencies = {
+      { 'github/copilot.vim' }, -- or zbirenbaum/copilot.lua
+      { 'nvim-lua/plenary.nvim', branch = 'master' }, -- for curl, log and async functions
+    },
+    build = 'make tiktoken', -- Only on MacOS or Linux
+    opts = {
+      -- See Configuration section for options
+      model = 'claude-3.5-sonnet',
+      mappings = {
+        show_help = {
+          normal = 'g?',
+        },
+      }
+
+    },
+    -- See Commands section for default commands if you want to lazy load on them
+  },
   'onsails/lspkind.nvim',
   {
     'Isrothy/neominimap.nvim',
@@ -126,15 +139,12 @@ return {
     end,
   },
   {
-    'CopilotC-Nvim/CopilotChat.nvim',
-    dependencies = {
-      { 'github/copilot.vim' }, -- or zbirenbaum/copilot.lua
-      { 'nvim-lua/plenary.nvim', branch = 'master' }, -- for curl, log and async functions
-    },
-    build = 'make tiktoken', -- Only on MacOS or Linux
-    opts = {
-      -- See Configuration section for options
-    },
-    -- See Commands section for default commands if you want to lazy load on them
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
+
   },
 }

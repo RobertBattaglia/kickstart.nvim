@@ -29,8 +29,16 @@ vim.keymap.set('n', '<leader>gl', '<cmd>GitCommitHistoryOneline<CR>', { desc = '
 -- Sourcegraph
 vim.keymap.set('n', '<leader>ss', '<cmd>SourcegraphSearch<CR>', { desc = '[S]ourcegraph [S]earch' })
 vim.keymap.set('n', '<leader>sl', '<cmd>SourcegraphLink<CR>', { desc = '[S]ourcegraph [L]ink' })
+
+-- CopilotChat
 vim.keymap.set('n', '<leader>cc', '<cmd>CopilotChatToggle<CR>', { desc = '[C]opilot [C]hat' })
-vim.keymap.set('v', '<leader>ca', ':CodyAsk ', { desc = '[C]ody [A]sk' })
+vim.keymap.set('v', '<leader>cc', function()
+      local input = vim.fn.input("Quick Chat: ")
+      if input ~= "" then
+        require("CopilotChat").ask(input, { selection = require("CopilotChat.select").visual })
+      end
+    end,
+{ desc = '[C]opilot [C]hat [Q]uick' })
 
 -- Neotree
 vim.keymap.set('n', '<leader>,', '<cmd>Neotree toggle reveal<CR>', { desc = 'Neotree toggle reveal' })
