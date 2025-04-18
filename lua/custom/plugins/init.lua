@@ -17,23 +17,6 @@ return {
     end,
   },
   {
-    'jackMort/ChatGPT.nvim',
-    event = 'VeryLazy',
-    config = function()
-      require('chatgpt').setup {
-        api_key_cmd = 'get-openai-api-key',
-        keymaps = {
-          select_session = '<leader>s',
-        },
-      }
-    end,
-    dependencies = {
-      'MunifTanjim/nui.nvim',
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-    },
-  },
-  {
     'sourcegraph/sg.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
@@ -80,6 +63,7 @@ return {
       require('copilot').setup {
         suggestion = { enabled = false },
         panel = { enabled = false },
+        copilot_node_command = vim.fn.expand("$HOME") .. "/.nvm/versions/node/v20.19.0/bin/node",
       }
     end,
   },
@@ -92,7 +76,7 @@ return {
   {
     'CopilotC-Nvim/CopilotChat.nvim',
     dependencies = {
-      { 'github/copilot.vim' }, -- or zbirenbaum/copilot.lua
+      { 'zbirenbaum/copilot.lua' },
       { 'nvim-lua/plenary.nvim', branch = 'master' }, -- for curl, log and async functions
     },
     build = 'make tiktoken', -- Only on MacOS or Linux
@@ -134,7 +118,7 @@ return {
       vim.opt.wrap = false
       vim.opt.sidescrolloff = 36
       vim.g.neominimap = {
-        auto_enable = true,
+        auto_enable = false,
       }
     end,
   },
