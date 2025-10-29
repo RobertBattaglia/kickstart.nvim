@@ -62,10 +62,11 @@ return {
     cmd = 'Copilot',
     event = 'InsertEnter',
     config = function()
+      local node_cmd = vim.fn.system('which node'):gsub('\n', '')
       require('copilot').setup {
         suggestion = { enabled = false },
         panel = { enabled = false },
-        copilot_node_command = vim.fn.expand '$HOME' .. '/.nvm/versions/node/v20.19.0/bin/node',
+        copilot_node_command = node_cmd,
       }
     end,
   },
