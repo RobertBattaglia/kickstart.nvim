@@ -2,6 +2,8 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
+---@module "neominimap.config.meta"
+
 return {
   'mfussenegger/nvim-jdtls',
   'tpope/vim-fugitive',
@@ -21,7 +23,7 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       require('sg').setup {
-        enable_cody  = false, -- 😭
+        enable_cody = false, -- 😭
         chat = {
           default_model = 'anthropic/claude-3-5-sonnet',
         },
@@ -63,7 +65,7 @@ return {
       require('copilot').setup {
         suggestion = { enabled = false },
         panel = { enabled = false },
-        copilot_node_command = vim.fn.expand("$HOME") .. "/.nvm/versions/node/v20.19.0/bin/node",
+        copilot_node_command = vim.fn.expand '$HOME' .. '/.nvm/versions/node/v20.19.0/bin/node',
       }
     end,
   },
@@ -87,8 +89,7 @@ return {
         show_help = {
           normal = 'g?',
         },
-      }
-
+      },
     },
     -- See Commands section for default commands if you want to lazy load on them
   },
@@ -97,28 +98,45 @@ return {
     'Isrothy/neominimap.nvim',
     enabled = true,
     lazy = false, -- NOTE: NO NEED to Lazy load
-    -- Optional
     keys = {
-      { '<leader>nt', '<cmd>Neominimap toggle<cr>', desc = 'Toggle minimap' },
-      { '<leader>no', '<cmd>Neominimap on<cr>', desc = 'Enable minimap' },
-      { '<leader>nc', '<cmd>Neominimap off<cr>', desc = 'Disable minimap' },
-      { '<leader>nf', '<cmd>Neominimap focus<cr>', desc = 'Focus on minimap' },
-      { '<leader>nu', '<cmd>Neominimap unfocus<cr>', desc = 'Unfocus minimap' },
-      { '<leader>ns', '<cmd>Neominimap toggleFocus<cr>', desc = 'Toggle focus on minimap' },
-      { '<leader>nwt', '<cmd>Neominimap winToggle<cr>', desc = 'Toggle minimap for current window' },
-      { '<leader>nwr', '<cmd>Neominimap winRefresh<cr>', desc = 'Refresh minimap for current window' },
-      { '<leader>nwo', '<cmd>Neominimap winOn<cr>', desc = 'Enable minimap for current window' },
-      { '<leader>nwc', '<cmd>Neominimap winOff<cr>', desc = 'Disable minimap for current window' },
-      { '<leader>nbt', '<cmd>Neominimap bufToggle<cr>', desc = 'Toggle minimap for current buffer' },
-      { '<leader>nbr', '<cmd>Neominimap bufRefresh<cr>', desc = 'Refresh minimap for current buffer' },
-      { '<leader>nbo', '<cmd>Neominimap bufOn<cr>', desc = 'Enable minimap for current buffer' },
-      { '<leader>nbc', '<cmd>Neominimap bufOff<cr>', desc = 'Disable minimap for current buffer' },
+      -- Global Minimap Controls
+      { '<leader>nm', '<cmd>Neominimap Toggle<cr>', desc = 'Toggle global minimap' },
+      { '<leader>no', '<cmd>Neominimap Enable<cr>', desc = 'Enable global minimap' },
+      { '<leader>nc', '<cmd>Neominimap Disable<cr>', desc = 'Disable global minimap' },
+      { '<leader>nr', '<cmd>Neominimap Refresh<cr>', desc = 'Refresh global minimap' },
+
+      -- Window-Specific Minimap Controls
+      { '<leader>nwt', '<cmd>Neominimap WinToggle<cr>', desc = 'Toggle minimap for current window' },
+      { '<leader>nwr', '<cmd>Neominimap WinRefresh<cr>', desc = 'Refresh minimap for current window' },
+      { '<leader>nwo', '<cmd>Neominimap WinEnable<cr>', desc = 'Enable minimap for current window' },
+      { '<leader>nwc', '<cmd>Neominimap WinDisable<cr>', desc = 'Disable minimap for current window' },
+
+      -- Tab-Specific Minimap Controls
+      { '<leader>ntt', '<cmd>Neominimap TabToggle<cr>', desc = 'Toggle minimap for current tab' },
+      { '<leader>ntr', '<cmd>Neominimap TabRefresh<cr>', desc = 'Refresh minimap for current tab' },
+      { '<leader>nto', '<cmd>Neominimap TabEnable<cr>', desc = 'Enable minimap for current tab' },
+      { '<leader>ntc', '<cmd>Neominimap TabDisable<cr>', desc = 'Disable minimap for current tab' },
+
+      -- Buffer-Specific Minimap Controls
+      { '<leader>nbt', '<cmd>Neominimap BufToggle<cr>', desc = 'Toggle minimap for current buffer' },
+      { '<leader>nbr', '<cmd>Neominimap BufRefresh<cr>', desc = 'Refresh minimap for current buffer' },
+      { '<leader>nbo', '<cmd>Neominimap BufEnable<cr>', desc = 'Enable minimap for current buffer' },
+      { '<leader>nbc', '<cmd>Neominimap BufDisable<cr>', desc = 'Disable minimap for current buffer' },
+
+      ---Focus Controls
+      { '<leader>nf', '<cmd>Neominimap Focus<cr>', desc = 'Focus on minimap' },
+      { '<leader>nu', '<cmd>Neominimap Unfocus<cr>', desc = 'Unfocus minimap' },
+      { '<leader>ns', '<cmd>Neominimap ToggleFocus<cr>', desc = 'Switch focus on minimap' },
     },
     init = function()
+      -- The following options are recommended when layout == "float"
       vim.opt.wrap = false
-      vim.opt.sidescrolloff = 36
+      vim.opt.sidescrolloff = 36 -- Set a large value
+
+      --- Put your configuration here
+      ---@type Neominimap.UserConfig
       vim.g.neominimap = {
-        auto_enable = false,
+        auto_enable = true,
       }
     end,
   },
@@ -129,6 +147,5 @@ return {
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {},
-
   },
 }

@@ -19,8 +19,7 @@ vim.keymap.set('n', '<leader>lp', '<cmd>lprev<CR>zz', { desc = 'lprev' })
 -- diagnostics
 vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next, { desc = '[D]iagnostics [N]ext' })
 vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev, { desc = '[D]iagnostics [P]rev' })
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = 'Diagnostics [E]xplore' })
-
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Diagnostics [E]xplore' })
 
 -- Fugitive Keymaps
 vim.keymap.set('n', '<leader>gh', '<cmd>0Gclog!<CR>', { desc = '[G]it [H]istory of current file in quickfix list' })
@@ -33,6 +32,3 @@ vim.keymap.set('n', '<leader>sl', '<cmd>SourcegraphLink<CR>', { desc = '[S]ource
 -- CopilotChat
 vim.keymap.set('n', '<leader>cc', '<cmd>CopilotChatToggle<CR>', { desc = '[C]opilot [C]hat' })
 vim.keymap.set('n', '<leader>cr', '<cmd>CopilotChatReset<CR>', { desc = '[C]opilot Chat [R]eset' })
-
--- Neotree
-vim.keymap.set('n', '<leader>,', '<cmd>Neotree toggle reveal<CR>', { desc = 'Neotree toggle reveal' })
