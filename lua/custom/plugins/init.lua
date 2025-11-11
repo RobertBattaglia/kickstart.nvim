@@ -24,9 +24,6 @@ return {
     config = function()
       require('sg').setup {
         enable_cody = false, -- 😭
-        chat = {
-          default_model = 'anthropic/claude-3-5-sonnet',
-        },
       }
     end,
   },
@@ -85,7 +82,11 @@ return {
     build = 'make tiktoken', -- Only on MacOS or Linux
     opts = {
       -- See Configuration section for options
-      model = 'claude-3.5-sonnet',
+      model = 'gpt-5-mini',
+      window = {
+        layout = 'vertical',
+        width = 0.35,
+      },
       mappings = {
         show_help = {
           normal = 'g?',
