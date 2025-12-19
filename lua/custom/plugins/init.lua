@@ -54,47 +54,7 @@ return {
       -- refer to the configuration section below
     },
   },
-  {
-    'zbirenbaum/copilot.lua',
-    cmd = 'Copilot',
-    event = 'InsertEnter',
-    config = function()
-      local node_cmd = vim.fn.system('which node'):gsub('\n', '')
-      require('copilot').setup {
-        suggestion = { enabled = false },
-        panel = { enabled = false },
-        copilot_node_command = node_cmd,
-      }
-    end,
-  },
-  {
-    'zbirenbaum/copilot-cmp',
-    config = function()
-      require('copilot_cmp').setup()
-    end,
-  },
-  {
-    'CopilotC-Nvim/CopilotChat.nvim',
-    dependencies = {
-      { 'zbirenbaum/copilot.lua' },
-      { 'nvim-lua/plenary.nvim', branch = 'master' }, -- for curl, log and async functions
-    },
-    build = 'make tiktoken', -- Only on MacOS or Linux
-    opts = {
-      -- See Configuration section for options
-      model = 'gpt-5-mini',
-      window = {
-        layout = 'vertical',
-        width = 0.35,
-      },
-      mappings = {
-        show_help = {
-          normal = 'g?',
-        },
-      },
-    },
     -- See Commands section for default commands if you want to lazy load on them
-  },
   'onsails/lspkind.nvim',
   {
     'Isrothy/neominimap.nvim',
