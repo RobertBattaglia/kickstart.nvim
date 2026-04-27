@@ -19,15 +19,6 @@ return {
     end,
   },
   {
-    'sourcegraph/sg.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require('sg').setup {
-        enable_cody = false, -- 😭
-      }
-    end,
-  },
-  {
     'windwp/nvim-autopairs',
     dependencies = { 'hrsh7th/nvim-cmp' },
     config = function()

@@ -1,5 +1,21 @@
 #!/usr/bin/env bash
 
+# jdtls (Eclipse JDT Language Server) requires Java 21+ to run, but Indeed
+# projects target Java 17. Launch jdtls on the newest JDK available (prefer 25,
+# fall back to 21) so the server starts; project runtime/target is configured
+# separately in ftplugin/java.lua via java.configuration.runtimes.
+JDTLS_JAVA_HOME="$(/usr/libexec/java_home -v 25 2>/dev/null || /usr/libexec/java_home -v 21 2>/dev/null)"
+
+if [ -z "$JDTLS_JAVA_HOME" ]; then
+  echo "jdtls-wrapper: no Java 21+ JDK found via /usr/libexec/java_home" >&2
+  exit 1
+fi
+
 EXECUTABLE_PATH="$HOME/.local/share/nvim/mason/bin/jdtls"
 
-JAVA_HOME=$JAVA_HOME $EXECUTABLE_PATH
+if [ ! -x "$EXECUTABLE_PATH" ]; then
+  echo "jdtls-wrapper: $EXECUTABLE_PATH missing — run :MasonInstall jdtls" >&2
+  exit 1
+fi
+
+exec env JAVA_HOME="$JDTLS_JAVA_HOME" "$EXECUTABLE_PATH"

@@ -1,5 +1,16 @@
--- For work
-local javaRuntimePath = os.getenv('JAVA_HOME')
+-- target Java 17. The jdtls server itself runs on a
+-- newer JDK (see ftplugin/jdtls-wrapper) because recent jdtls requires Java 21+.
+
+local function javaHomeFor(version)
+	local handle = io.popen('/usr/libexec/java_home -v ' .. version .. ' 2>/dev/null')
+	if not handle then return nil end
+	local result = handle:read('*l')
+	handle:close()
+	if result == nil or result == '' then return nil end
+	return result
+end
+
+local java17Home = javaHomeFor('17') or os.getenv('JAVA_HOME')
 local wrapperPath = os.getenv('HOME') .. '/dotfiles/nvim/.config/nvim/ftplugin/jdtls-wrapper'
 
 local config = {
@@ -11,10 +22,11 @@ local config = {
 			configuration = {
 				runtimes = {
 					{
-						path = javaRuntimePath,
-						default = true
-					}
-				}
+						name = 'JavaSE-17',
+						path = java17Home,
+						default = true,
+					},
+				},
 			},
 			completion = {
 				importOrder = {
@@ -29,12 +41,12 @@ local config = {
 					enabled = true,
 					home = os.getenv('HOME') .. '/.gradle/',
 					java = {
-						home = javaRuntimePath
-					}
-				}
-			}
-		}
-	}
+						home = java17Home,
+					},
+				},
+			},
+		},
+	},
 }
 
 local map = function(mode, keys, func, desc)
