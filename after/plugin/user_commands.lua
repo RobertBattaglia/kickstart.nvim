@@ -22,3 +22,33 @@ function Git_commit_history_oneline()
 end
 
 vim.api.nvim_create_user_command('GitCommitHistoryOneline', Git_commit_history_oneline, { })
+
+--
+-- Custom keybinds for file operations
+-- Open current buffer in Google Chrome
+vim.api.nvim_create_user_command('OpenInChrome', function()
+  local filepath = vim.fn.expand '%:p'
+  if filepath == '' then
+    vim.notify('No file in current buffer', vim.log.levels.WARN)
+    return
+  end
+  local cmd = string.format('open -a "Google Chrome" "%s"', filepath)
+  vim.fn.system(cmd)
+  vim.notify('Opened in Chrome: ' .. filepath, vim.log.levels.INFO)
+end, { desc = 'Open current buffer in Google Chrome' })
+
+vim.keymap.set('n', '<leader>oc', ':OpenInChrome<CR>', { desc = '[O]pen in [C]hrome', silent = true })
+
+-- Copy current buffer filepath to clipboard
+vim.api.nvim_create_user_command('CopyFilePath', function()
+  local filepath = vim.fn.expand '%:p'
+  if filepath == '' then
+    vim.notify('No file in current buffer', vim.log.levels.WARN)
+    return
+  end
+  vim.fn.setreg('+', filepath)
+  vim.notify('Copied to clipboard: ' .. filepath, vim.log.levels.INFO)
+end, { desc = 'Copy current buffer file path to clipboard' })
+
+vim.keymap.set('n', '<leader>cp', ':CopyFilePath<CR>', { desc = '[C]opy file [P]ath', silent = true })
+
